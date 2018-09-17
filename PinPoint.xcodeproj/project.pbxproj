@@ -10,6 +10,8 @@
 		604DDC5B2142DAA600A9588A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604DDC5A2142DAA600A9588A /* ProfileViewController.swift */; };
 		604DDC5D214334C300A9588A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604DDC5C214334C300A9588A /* User.swift */; };
 		604DDC5F214340F800A9588A /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604DDC5E214340F800A9588A /* CreatePostViewController.swift */; };
+		604DDC63214AE70C00A9588A /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604DDC62214AE70C00A9588A /* Location.swift */; };
+		60C62D0B214AF9B100457BDA /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C62D0A214AF9B100457BDA /* LocationData.swift */; };
 		60DF67022135D3AD007F79EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF67012135D3AD007F79EE /* AppDelegate.swift */; };
 		60DF67072135D3AD007F79EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DF67052135D3AD007F79EE /* Main.storyboard */; };
 		60DF67092135D3AE007F79EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60DF67082135D3AE007F79EE /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 		604DDC5A2142DAA600A9588A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		604DDC5C214334C300A9588A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		604DDC5E214340F800A9588A /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		604DDC62214AE70C00A9588A /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		60C62D0A214AF9B100457BDA /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		60DF66FE2135D3AD007F79EE /* PinPoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PinPoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DF67012135D3AD007F79EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60DF67062135D3AD007F79EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				604DDC5E214340F800A9588A /* CreatePostViewController.swift */,
 				604DDC5A2142DAA600A9588A /* ProfileViewController.swift */,
 				604DDC5C214334C300A9588A /* User.swift */,
+				604DDC62214AE70C00A9588A /* Location.swift */,
+				60C62D0A214AF9B100457BDA /* LocationData.swift */,
 				60DF67312135D6EA007F79EE /* LoadingScreenViewController.swift */,
 				60DF672F2135D47F007F79EE /* MapViewController.swift */,
 				60DF67082135D3AE007F79EE /* Assets.xcassets */,
@@ -268,12 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C62D0B214AF9B100457BDA /* LocationData.swift in Sources */,
 				60DF67022135D3AD007F79EE /* AppDelegate.swift in Sources */,
 				60DF67302135D47F007F79EE /* MapViewController.swift in Sources */,
 				604DDC5B2142DAA600A9588A /* ProfileViewController.swift in Sources */,
 				604DDC5D214334C300A9588A /* User.swift in Sources */,
 				604DDC5F214340F800A9588A /* CreatePostViewController.swift in Sources */,
 				60DF67322135D6EA007F79EE /* LoadingScreenViewController.swift in Sources */,
+				604DDC63214AE70C00A9588A /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,8 +14,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 
     @IBOutlet weak var mapView: MKMapView!
     
-    //let locationManager = CLLocationManager()
-    private var locationManager: CLLocationManager!
+    let locationManager = CLLocationManager()
     private var currentLocation: CLLocation?
     
     override func viewDidLoad() {
@@ -30,7 +29,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         var items = [UIBarButtonItem]()
         items.append(space)
-        items.append(UIBarButtonItem(image: UIImage(named: "Post"), style: .plain, target: self, action: #selector(self.viewProfile)))
+        items.append(UIBarButtonItem(image: UIImage(named: "Post"), style: .plain, target: self, action: #selector(self.viewPost)))
         items.append(space)
         items.append(UIBarButtonItem(image: UIImage(named: "Search"), style: .plain, target: self, action: #selector(self.viewProfile)))
         items.append(space)
@@ -39,38 +38,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true;
+        self.mapView.mapType = .standard
+        self.mapView.isZoomEnabled = true
+        self.mapView.isScrollEnabled = true
         
-        locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
         // Check for Location Services
-
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.requestWhenInUseAuthorization()
             locationManager.startUpdatingLocation()
         }
-
+        
+        viewPost()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        determineMyCurrentLocation()
-    }
-    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        if let location = locations.last{
-//            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-//            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-//            self.mapView.setRegion(region, animated: true)
-//        }
-//    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         defer { currentLocation = locations.last }
@@ -84,23 +72,53 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         }
     }
     
-    func determineMyCurrentLocation() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-            //locationManager.startUpdatingHeading()
-        }
-    }
-    
     @objc
     func viewProfile() {
         self.performSegue(withIdentifier: "showProfileView", sender: nil)
     }
 
+    @objc
+    func viewPost() {
+        print("VIEWING POST")
+        let locationPoint = Location(city: "San Francisco", state: "CA", business: 738999)
+        locationPoint.getData() { hotSpots in
+            print(hotSpots)
+            for hotSpot in hotSpots {
+                
+                let geoCoder = CLGeocoder()
+                geoCoder.geocodeAddressString(hotSpot.address) { (placemarks, error) in
+                    guard
+                        let placemarks = placemarks,
+                        let location = placemarks.first?.location
+                        else { return }
+                    
+                    print("Making annotation for \(hotSpot.name) \(hotSpot.address)")
+                    let annotation = MKPointAnnotation()
+                    annotation.title = hotSpot.name
+                    annotation.coordinate = location.coordinate
+                    self.mapView.addAnnotation(annotation)
+                }
+            }
+        }
+    }
+    
+    //This utilizes pins
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        guard annotation is MKPointAnnotation else { return nil }
+//
+//        let identifier = "Annotation"
+//        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+//
+//        if annotationView == nil {
+//            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//            annotationView!.canShowCallout = true
+//        } else {
+//            annotationView!.annotation = annotation
+//        }
+//
+//        return annotationView
+//    }
+    
     /*
     // MARK: - Navigation
 

@@ -21,7 +21,7 @@ class LoadingScreenViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.emailInput.alpha = 0
         self.passwordInput.alpha = 0
         self.loginButton.alpha = 0
